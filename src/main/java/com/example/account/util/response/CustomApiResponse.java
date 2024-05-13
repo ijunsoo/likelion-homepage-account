@@ -25,5 +25,8 @@ public class CustomApiResponse<T> {
     public static <T> CustomApiResponse<T> createFailWithoutData(int status, String message) {
         return new CustomApiResponse<>(status, null, message);
     }
+    public static <T> CustomApiResponse<T> createFailWithout(int status,String message){
+        return new CustomApiResponse<>(status, null,message);
+    }
 
 }
