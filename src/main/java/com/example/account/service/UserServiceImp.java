@@ -39,6 +39,15 @@ public class UserServiceImp implements UserService {
         return ResponseEntity.ok(cus);
         }
     }
+    @Override
+    public ResponseEntity<CustomApiResponse<?>> deleteUser(Long id) {
+        Optional<Users> optionalUsers = userRepository.findById(id);
+        Users user = optionalUsers.get();
+        if (optionalUsers.isPresent()) {
+            userRepository.delete(user);
+        }
+        CustomApiResponse<?> dle = CustomApiResponse.createSuccess(HttpStatus.OK.value(), null, "회원 탈퇴가 성공적으로 진행되었습니다.");
+        return ResponseEntity.ok(dle);
 
-
+    }
 }

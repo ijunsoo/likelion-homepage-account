@@ -6,7 +6,6 @@ import com.example.account.util.response.CustomApiResponse;
 import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +21,11 @@ public class UserController {
         ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(sdb);
         return result;
     }
-//    @PostMapping("/{Id}")
-//    public ResponseEntity<CustomApiResponse<?>> deleteUser(
-//            @PathVariable("Id")long Id,@Req
-//    ) {
-
-
-  //  }
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomApiResponse<?>> deleteUser(
+            @PathVariable("id")long id
+            ) {
+        ResponseEntity<CustomApiResponse<?>> result = userService.deleteUser(id);
+        return result;
+    }
 }
