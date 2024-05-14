@@ -16,14 +16,22 @@ import lombok.NoArgsConstructor;
 public class Users extends BaseEntity {
     @Id
     @GeneratedValue
-    @Column(name = "USERS_ID")
-    private Long id;
+    @Column(name = "ID")
+    private long id;
+
     @Column(name = "USERS_NAME")
     private String username;
+
+    @Column(name = "USERS_ID")
+    private String userId;
+
     @Column(name = "USERS_PASSWORD")
     private String password;
+
     @Column(name = "USERS_EMAIL")
     private String email;
-    @Column(name = "USERS_PHONENUMBERS")
-    private String phonenumbers;
+
+    @Column(name = "USERS_PHONENUMBER")
+    private String phonenumber;
+
 }

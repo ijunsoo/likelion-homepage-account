@@ -5,6 +5,7 @@ import com.example.account.service.UserService;
 import com.example.account.util.response.CustomApiResponse;
 import jakarta.validation.Valid;
 import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,19 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @Builder
 @RestController
 @RequestMapping("/api/account")
+@RequiredArgsConstructor
 public class UserController {
+    private final UserService userService;
     @PostMapping("/signup")
-    public ResponseEntity<CustomApiResponse<?>> Signup(@Valid @RequestBody SignupDto dto) {
-
-        //회원가입
-        System.out.println(dto.getId());
-        System.out.println(dto.getEmail());
-
-
+    public ResponseEntity<CustomApiResponse<?>> saveUser(@Valid @RequestBody SignupDto.SDB sdb) {
         //응답
-        ResponseEntity<CustomApiResponse<?>> result = UserServiceService.createPost(req);
+        ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(sdb);
         return result;
-
-
     }
 }
