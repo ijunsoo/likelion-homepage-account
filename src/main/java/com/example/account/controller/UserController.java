@@ -22,4 +22,11 @@ public class UserController {
         ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(sdb);
         return result;
     }
+//    @PostMapping("/{Id}")
+//    public ResponseEntity<CustomApiResponse<?>> deleteUser(
+//            @PathVariable("Id")long Id,@Req
+//    ) {
+
+
+  //  }
 }

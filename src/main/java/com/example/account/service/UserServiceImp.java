@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Builder
@@ -19,11 +21,23 @@ public class UserServiceImp implements UserService {
 
     @Override
     public ResponseEntity<CustomApiResponse<?>> saveUser(SignupDto.SDB sdb){
-        Users user = sdb.toEntity();
-        Users userSave = userRepository.save(user);
-        SignupDto.CreateUser createdUserResponse = new SignupDto.CreateUser(userSave.getId(),userSave.getCreatedAt());
+
+        // 회원이 존재하는지? -> userId 고유하기때문
+        Optional<Users> findUser = userRepository.findByUserId(sdb.getUserId());
+
+        //동일한 userId의 경우 회원가입 불가 -> CustomApiResponse create Fail 데이터 반환\
+        if(findUser.isPresent()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(CustomApiResponse.createFailWithout(HttpStatus.BAD_REQUEST.value(), "중복된 아이디 입니다."));
+
+        }
+        else{
+            Users user = sdb.toEntity();
+            Users userSave = userRepository.save(user);
+        SignupDto.CreateUser createdUserResponse = new SignupDto.CreateUser(userSave.getId(),userSave.getUpdatedAt());
         CustomApiResponse<SignupDto.CreateUser> cus = CustomApiResponse.createSuccess(HttpStatus.OK.value(), createdUserResponse,"회원가입이 완료되었습니다.");
         return ResponseEntity.ok(cus);
+        }
     }
 
 
