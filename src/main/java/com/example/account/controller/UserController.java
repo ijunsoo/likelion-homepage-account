@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Builder
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/api/member")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -22,7 +22,7 @@ public class UserController {
         ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(sdb);
         return result;
     }
-    @PutMapping("/{id}")
+    @DeleteMapping("/withdraw/{id}")
     public ResponseEntity<CustomApiResponse<?>> deleteUser(
             @PathVariable("id")long id
             ) {
