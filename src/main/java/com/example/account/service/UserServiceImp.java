@@ -1,6 +1,7 @@
 package com.example.account.service;
 
 import com.example.account.domain.Users;
+import com.example.account.dto.LoginDto;
 import com.example.account.dto.SignupDto;
 import com.example.account.repository.UserRepository;
 import com.example.account.util.response.CustomApiResponse;
@@ -49,5 +50,28 @@ public class UserServiceImp implements UserService {
         CustomApiResponse<?> dle = CustomApiResponse.createSuccess(HttpStatus.OK.value(), null, "회원 탈퇴가 성공적으로 진행되었습니다.");
         return ResponseEntity.ok(dle);
 
+    }
+    @Override
+    public ResponseEntity<CustomApiResponse<?>> loginUser(LoginDto.SDB sdb) {
+        Optional<Users> findUser = userRepository.findByUserId(sdb.getUserId());
+
+        if (findUser.isPresent()) {
+            Users user = findUser.get();
+            // 비밀번호 일치 여부 확인
+            if (user.getPassword().equals(sdb.getPassword())) {
+                // 비밀번호가 일치하면 로그인 성공 처리
+                LoginDto.UpdateUser updateUserResponse = new LoginDto.UpdateUser(user.getUpdatedAt());
+                CustomApiResponse<LoginDto.UpdateUser> login = CustomApiResponse.createSuccess(HttpStatus.OK.value(), updateUserResponse, "로그인에 성공하였습니다.");
+                return ResponseEntity.ok(login);
+            } else {
+                // 비밀번호가 일치하지 않으면 에러 메시지 반환
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(CustomApiResponse.createFailWithout(HttpStatus.BAD_REQUEST.value(), "비밀번호가 잘못되었습니다."));
+            }
+        } else {
+            // 사용자 아이디가 존재하지 않으면 에러 메시지 반환
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(CustomApiResponse.createFailWithout(HttpStatus.BAD_REQUEST.value(), "아이디가 잘못되었습니다."));
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.account.service;
 
+import com.example.account.dto.LoginDto;
 import com.example.account.dto.SignupDto;
 import com.example.account.util.response.CustomApiResponse;
 import jakarta.validation.Valid;
@@ -13,5 +14,7 @@ public interface UserService {
 
 
     ResponseEntity<CustomApiResponse<?>> deleteUser(Long id);
+
+    ResponseEntity<CustomApiResponse<?>> loginUser(LoginDto.@Valid SDB sdb);
 }
 
