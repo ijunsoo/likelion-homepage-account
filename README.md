@@ -1,30 +1,30 @@
 # likelion-homepage-account
 # 회원가입 api , 로그인 api 를 위한 컨트롤러 작성
 
-@Builder
-@RestController
-@RequestMapping("/api/member")
-@RequiredArgsConstructor
-public class UserController {
-    private final UserService userService;
-    @PostMapping("/signup")
-    public ResponseEntity<CustomApiResponse<?>> saveUser(@Valid @RequestBody SignupDto.SDB sdb) {
-        //응답
-        ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(sdb);
-        return result;
-    }
-    @DeleteMapping("/withdraw/{id}")
-    public ResponseEntity<CustomApiResponse<?>> deleteUser(
-            @PathVariable("id")long id
-            ) {
-        ResponseEntity<CustomApiResponse<?>> result = userService.deleteUser(id);
-        return result;
-    }
-    @PostMapping("/login")
-    public ResponseEntity<CustomApiResponse<?>> loginUser(@Valid@RequestBody LoginDto.SDB sdb){
-        ResponseEntity<CustomApiResponse<?>> result = userService.loginUser(sdb);
-        return result;
-    }
+@Builder  
+@RestController  
+@RequestMapping("/api/member")  
+@RequiredArgsConstructor  
+public class UserController {  
+    private final UserService userService;  
+    @PostMapping("/signup")  
+    public ResponseEntity<CustomApiResponse<?>> saveUser(@Valid @RequestBody SignupDto.SDB sdb) {  
+        //응답  
+        ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(sdb);  
+        return result;  
+    }  
+    @DeleteMapping("/withdraw/{id}")  
+    public ResponseEntity<CustomApiResponse<?>> deleteUser(  
+            @PathVariable("id")long id  
+            ) {  
+        ResponseEntity<CustomApiResponse<?>> result = userService.deleteUser(id);  
+        return result;  
+    }  
+    @PostMapping("/login")  
+    public ResponseEntity<CustomApiResponse<?>> loginUser(@Valid@RequestBody LoginDto.SDB sdb){  
+        ResponseEntity<CustomApiResponse<?>> result = userService.loginUser(sdb);  
+        return result;  
+    }  
 }
 # 각 컨트롤러에서 해당하는 값을 넘기고 저장하기 위한 dto 작성
 ## signup dto
