@@ -37,12 +37,12 @@ public class SignupDto {
     @NoArgsConstructor  
     @AllArgsConstructor  
     @Builder  
-public static class dto {
-        @NotBlank(message = "email 은 필수값입니다.")
-        @Email(message = "형식에 맞지않는 이메일입니다.")
-        private String email;
+public static class dto {  
+        @NotBlank(message = "email 은 필수값입니다.")  
+        @Email(message = "형식에 맞지않는 이메일입니다.")  
+        private String email;  
 
-        @NotBlank(message = "아이디는 필수값입니다.")
+        @NotBlank(message = "아이디는 필수값입니다.") 
         private String userId;
 
         @NotBlank(message = "비밀번호는 필수값입니다.")
@@ -75,18 +75,18 @@ public static class dto {
 }
 ## login dto
 
-public class LoginDto {
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
-    public static class dto {
-        @NotBlank(message = "아이디는 필수값입니다.")
-        private String userId;
+public class LoginDto {  
+    @Getter  
+    @Setter  
+    @NoArgsConstructor  
+    @AllArgsConstructor  
+    @Builder  
+    public static class dto {  
+        @NotBlank(message = "아이디는 필수값입니다.")  
+        private String userId;   
 
-        @NotBlank(message = "비밀번호는 필수값입니다.")
-        private String password;
+        @NotBlank(message = "비밀번호는 필수값입니다.")  
+        private String password;  
 
     }
     @Setter
