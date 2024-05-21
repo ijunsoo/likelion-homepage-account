@@ -31,12 +31,12 @@ public class UserController {
 # 각 컨트롤러에서 해당하는 값을 넘기고 저장하기 위한 dto 작성
 ## signup dto
 
-public class SignupDto {
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
+public class SignupDto {  
+    @Getter  
+    @Setter  
+    @NoArgsConstructor  
+    @AllArgsConstructor  
+    @Builder  
 public static class dto {
         @NotBlank(message = "email 은 필수값입니다.")
         @Email(message = "형식에 맞지않는 이메일입니다.")
