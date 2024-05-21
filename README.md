@@ -8,25 +8,25 @@
 public class UserController {  
     private final UserService userService;  
     @PostMapping("/signup")  
-    public ResponseEntity<CustomApiResponse<?>> saveUser(@Valid @RequestBody SignupDto.dto dto) {  
-        //응답
-        ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(dto);
+    public ResponseEntity<CustomApiResponse<?>> saveUser(@Valid @RequestBody SignupDto.dto dto) {    
+        //응답  
+        ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(dto);  
+        return result;  
+    }  
+    @DeleteMapping("/withdraw/{usrId}")  
+    public ResponseEntity<CustomApiResponse<?>> deleteUser(  
+            @PathVariable("userId")String userId  
+            ) {  
+        ResponseEntity<CustomApiResponse<?>> result = userService.deleteUser(userId);  
+        return result;  
+    }  
+    @PostMapping("/login")  
+    public ResponseEntity<CustomApiResponse<?>> loginUser(@Valid@RequestBody LoginDto.dto dto){  
+        ResponseEntity<CustomApiResponse<?>> result = userService.loginUser(dto);  
         return result;
-    }
-    @DeleteMapping("/withdraw/{usrId}")
-    public ResponseEntity<CustomApiResponse<?>> deleteUser(
-            @PathVariable("userId")String userId
-            ) {
-        ResponseEntity<CustomApiResponse<?>> result = userService.deleteUser(userId);
-        return result;
-    }
-    @PostMapping("/login")
-    public ResponseEntity<CustomApiResponse<?>> loginUser(@Valid@RequestBody LoginDto.dto dto){
-        ResponseEntity<CustomApiResponse<?>> result = userService.loginUser(dto);
-        return result;
-    }
+    }  
 
-}
+}  
 
 # 각 컨트롤러에서 해당하는 값을 넘기고 저장하기 위한 dto 작성
 ## signup dto
