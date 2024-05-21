@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,22 +19,20 @@ import lombok.NoArgsConstructor;
 public class Users extends BaseEntity {
     @Id
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "id")
     private long id;
 
-    @Column(name = "USERS_NAME")
-    private String username;
-
-    @Column(name = "USERS_ID")
+    @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "USERS_PASSWORD")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "USERS_EMAIL")
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "USERS_PHONENUMBER")
-    private String phonenumber;
+    @Column(name = "phone")
+    private String phone;
+
 
 }

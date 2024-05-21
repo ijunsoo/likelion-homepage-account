@@ -4,6 +4,7 @@ import com.example.account.domain.Users;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ public class SignupDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-public static class SDB {
+public static class dto {
         @NotBlank(message = "email 은 필수값입니다.")
         @Email(message = "형식에 맞지않는 이메일입니다.")
         private String email;
@@ -27,19 +28,16 @@ public static class SDB {
         @NotBlank(message = "비밀번호는 필수값입니다.")
         private String password;
 
-        @NotBlank(message = "이름은 필수값입니다.")
-        public String username;
-
+        @Pattern(regexp = "^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$", message = "10 ~ 11 자리의 숫자만 입력 가능합니다.")
         @NotBlank(message = "전화번호는 필수값입니다.")
-        public String phonenumber;
+        public String phone;
 
         public Users toEntity() {
             return Users.builder()
                     .userId(userId)
                     .email(email)
-                    .username(username)
                     .password(password)
-                    .phonenumber(phonenumber)
+                    .phone(phone)
                     .build();
         }
     }

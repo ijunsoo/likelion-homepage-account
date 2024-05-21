@@ -7,14 +7,15 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface UserService {
 
-    ResponseEntity<CustomApiResponse<?>> saveUser(SignupDto.@Valid SDB sdb);
+    ResponseEntity<CustomApiResponse<?>> saveUser(SignupDto.@Valid dto dto);
 
 
-    ResponseEntity<CustomApiResponse<?>> deleteUser(Long id);
+    ResponseEntity<CustomApiResponse<?>> deleteUser(String userId);
 
-    ResponseEntity<CustomApiResponse<?>> loginUser(LoginDto.@Valid SDB sdb);
+    ResponseEntity<CustomApiResponse<?>> loginUser(LoginDto.@Valid dto dto);
+
 }
 

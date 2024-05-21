@@ -10,28 +10,29 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Builder
+
 @RestController
 @RequestMapping("/api/member")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
     @PostMapping("/signup")
-    public ResponseEntity<CustomApiResponse<?>> saveUser(@Valid @RequestBody SignupDto.SDB sdb) {
+    public ResponseEntity<CustomApiResponse<?>> saveUser(@Valid @RequestBody SignupDto.dto dto) {
         //응답
-        ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(sdb);
+        ResponseEntity<CustomApiResponse<?>> result = userService.saveUser(dto);
         return result;
     }
-    @DeleteMapping("/withdraw/{id}")
+    @DeleteMapping("/withdraw/{usrId}")
     public ResponseEntity<CustomApiResponse<?>> deleteUser(
-            @PathVariable("id")long id
+            @PathVariable("userId")String userId
             ) {
-        ResponseEntity<CustomApiResponse<?>> result = userService.deleteUser(id);
+        ResponseEntity<CustomApiResponse<?>> result = userService.deleteUser(userId);
         return result;
     }
     @PostMapping("/login")
-    public ResponseEntity<CustomApiResponse<?>> loginUser(@Valid@RequestBody LoginDto.SDB sdb){
-        ResponseEntity<CustomApiResponse<?>> result = userService.loginUser(sdb);
+    public ResponseEntity<CustomApiResponse<?>> loginUser(@Valid@RequestBody LoginDto.dto dto){
+        ResponseEntity<CustomApiResponse<?>> result = userService.loginUser(dto);
         return result;
     }
+
 }

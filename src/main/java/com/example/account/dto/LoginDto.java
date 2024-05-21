@@ -13,7 +13,7 @@ public class LoginDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class SDB {
+    public static class dto {
         @NotBlank(message = "아이디는 필수값입니다.")
         private String userId;
 
